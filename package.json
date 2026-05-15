@@ -1,0 +1,15 @@
+{
+  "name": "lightcode",
+  "private": true,
+  "packageManager": "bun@1.3.13",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "bun --filter server dev",
+    "dev:cli": "bun run --cwd ./apps/cli dev",
+    "build": "bun --workspaces run build",
+    "typecheck": "bun --workspaces run typecheck"
+  }
+}

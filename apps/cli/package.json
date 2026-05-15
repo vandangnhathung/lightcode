@@ -1,0 +1,22 @@
+{
+  "name": "cli",
+  "module": "src/index.tsx",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch src/index.tsx",
+    "build": "bun build src/index.tsx --outdir dist --target bun",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@lightcode/shared": "workspace:*",
+    "@opentui/core": "^0.2.1",
+    "@opentui/react": "^0.2.1",
+    "react": "^19.2.4"
+  }
+}
