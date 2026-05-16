@@ -42,6 +42,11 @@ No test runner, linter, or formatter configured yet. Do not invent commands.
 - CLI tsconfig explicitly sets `module/target: esnext` so editors accept top-level `await` (Bun runtime allows it; some TS servers misread `module: Preserve`).
 - Server entry guards startup with `if (import.meta.main)` so it can be imported without binding a port. Port via `Bun.env.PORT`, default 3000.
 
+## OpenTUI gotchas
+
+- `<textarea>` is **uncontrolled**. Read `ref.current.plainText` inside `onSubmit`/`onContentChange`; do not try to drive its content with a React `value` prop. Clear via `ref.current.clear()`.
+- For OpenTUI questions, **invoke the `opentui` skill first** for curated context. Only fall back to grepping `node_modules/@opentui/*` if the skill doesn't cover it.
+
 ## Workspaces gotcha
 
 Workspaces glob is `apps/*` and `packages/*`. After moving or renaming a workspace, delete `node_modules` + `bun.lock` and rerun `bun install` to refresh symlinks.
