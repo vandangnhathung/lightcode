@@ -1,28 +1,21 @@
-import { Hono } from "hono";
-import { APP_NAME, greet } from "@lightcode/shared";
+import { app } from "./app.ts";
 
-export const app = new Hono();
+const port = Number(Bun.env.PORT ?? 3000);
 
-app.get("/", (c) => {
-  return c.json({
-    name: APP_NAME,
-    runtime: "bun",
-    message: greet("world").message,
-  });
-});
-
-app.get("/health", (c) => {
-  return c.json({ status: "ok" });
-});
-
-if (import.meta.main) {
-  const port = Number(Bun.env.PORT ?? 3000);
+try {
   const server = Bun.serve({
     port,
     fetch: app.fetch,
   });
 
   console.log(`Hono server listening on ${server.url}`);
-}
+} catch (error) {
+  if (error instanceof Error && "code" in error && error.code === "EADDRINUSE") {
+    console.error(
+      `Port ${port} is already in use. Run with another port, e.g. PORT=${port + 1} bun run dev:server`,
+    );
+    process.exit(1);
+  }
 
-export type AppType = typeof app;
+  throw error;
+}

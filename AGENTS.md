@@ -33,6 +33,19 @@ OpenTUI needs a raw, unfiltered TTY: it switches to the alternate screen, hides 
 
 No test runner, linter, or formatter configured yet. Do not invent commands.
 
+## Commit format
+
+Use the latest commit format for subsequent commits:
+
+```text
+<type>(<scope>): <imperative summary>
+
+- <imperative detail>
+- <imperative detail>
+```
+
+Keep the subject concise. Use a conventional type and scope, then a blank line and hyphen bullets for details.
+
 ## Conventions
 
 - Bun only — do not add Node/npm/pnpm/yarn artifacts. `packageManager` pinned in root `package.json`.
